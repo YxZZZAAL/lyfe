@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
-import { PETS } from '@/lib/pets';
+
 
 export async function POST(req: Request) {
   const session = await getServerSession(authOptions);
@@ -43,8 +43,8 @@ export async function GET() {
     orderBy: { locationUpdatedAt: 'desc' },
   });
 
-  const mapped = users.map(u => {
-    const activePet = u.activePetId ? PETS.find(p => p.id === u.activePetId) : null;
+  const mapped = users.map((u: any) => {
+    const activePet = u.activePetId ? { id: u.activePetId, name: u.activePetId, emoji: '🐾', rarity: 'common' } : null;
     return {
       id: u.id,
       name: u.name,
