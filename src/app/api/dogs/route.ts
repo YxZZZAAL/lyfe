@@ -14,7 +14,7 @@ export async function GET() {
   if (!user) return NextResponse.json({ error: 'Not found' }, { status: 404 })
 
   return NextResponse.json({
-    unlockedPetIds: user.unlockedPets.map(p => p.petId),
+    unlockedPetIds: user.unlockedPets.map((p: { petId: string }) => p.petId),
     activePetId: user.activePetId,
     profileTheme: user.profileTheme,
     profileBio: user.profileBio,
