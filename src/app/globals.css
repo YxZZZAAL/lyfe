@@ -2,7 +2,7 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #111827;
 }
 
 @theme inline {
@@ -12,15 +12,45 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+body {
+  background: #fff;
+  color: #111827;
+  font-family: var(--font-geist-sans), 'Inter', Arial, sans-serif;
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.card-3d {
+  transform: perspective(1000px) rotateX(4deg) rotateY(-6deg);
+  transition: transform 0.4s cubic-bezier(.22,.68,0,1.2), box-shadow 0.4s ease;
+  box-shadow: 12px 20px 40px rgba(0,0,0,0.12), 4px 6px 12px rgba(22,163,74,0.1);
+}
+.card-3d:hover {
+  transform: perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1.04);
+  box-shadow: 20px 32px 60px rgba(0,0,0,0.15), 0 0 0 rgba(22,163,74,0);
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(-2deg); }
+  50% { transform: translateY(-14px) rotate(2deg); }
+}
+@keyframes float2 {
+  0%, 100% { transform: translateY(0px) rotate(2deg); }
+  50% { transform: translateY(-10px) rotate(-1deg); }
+}
+@keyframes float3 {
+  0%, 100% { transform: translateY(4px) rotate(-1deg); }
+  50% { transform: translateY(-10px) rotate(2deg); }
+}
+.float-1 { animation: float 6s ease-in-out infinite; }
+.float-2 { animation: float2 8s ease-in-out infinite 0.5s; }
+.float-3 { animation: float3 7s ease-in-out infinite 1s; }
+
+@keyframes pulse-green {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(34,197,94,0.5); }
+  50% { box-shadow: 0 0 0 10px rgba(34,197,94,0); }
+}
+.pulse-green { animation: pulse-green 2s infinite; }
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
 }
