@@ -27,7 +27,7 @@ export async function POST(req: Request) {
     include: { unlockedPets: true },
   })
   if (!user) return NextResponse.json({ error: 'Not found' }, { status: 404 })
-  const already = user.unlockedPets.find(p => p.petId === petId)
+  const already = user.unlockedPets.find((p: { petId: string }) => p.petId === petId)
   if (already) return NextResponse.json({ ok: true, message: 'Already owned' })
   await prisma.userPet.create({ data: { userId: user.id, petId } })
   return NextResponse.json({ ok: true })
