@@ -12,7 +12,7 @@ export async function GET() {
   })
   if (!user) return NextResponse.json({ error: 'Not found' }, { status: 404 })
   return NextResponse.json({
-    owned: user.unlockedPets.map(p => p.petId),
+    owned: user.unlockedPets.map((p: { petId: string }) => p.petId),
     activePetId: user.activePetId,
   })
 }

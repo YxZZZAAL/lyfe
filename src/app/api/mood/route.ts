@@ -25,7 +25,7 @@ async function checkAndGrantAchievements(userId: string) {
     totalTasksDone: user.totalTasksDone,
     currentStreak: user.currentStreak,
     amazingMoodDays: user.amazingMoodDays,
-    unlockedPetIds: user.unlockedPets.map(p => p.petId),
+    unlockedPetIds: user.unlockedPets.map((p: { petId: string }) => p.petId),
   }
 
   for (const dog of DOGS) {
